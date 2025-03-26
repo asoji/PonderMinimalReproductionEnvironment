@@ -4,14 +4,16 @@ val minecraftDep = "=1.21.1"
 // https://parchmentmc.org/docs/getting-started
 val parchmentVersion = "2024.11.17"
 // https://fabricmc.net/develop
-val loaderVersion = "0.16.9"
-val fapiVersion = "0.114.0+1.21.1"
+val loaderVersion = "0.16.10"
+val fapiVersion = "0.115.3+1.21.1"
+val fcapiVersion = "21.1.3"
+val flywheelVersion = "1.0.2"
 
 // dev env mods
 // https://modrinth.com/mod/sodium/versions?l=fabric
-val sodiumVersion = "mc1.21.1-0.6.5-fabric"
+val sodiumVersion = "mc1.21.1-0.6.9-fabric"
 // https://modrinth.com/mod/jade/versions?l=fabric
-val jadeVersion = "15.9.2+fabric"
+val jadeVersion = "15.10.0+fabric"
 // https://modrinth.com/mod/modmenu/versions
 val modmenuVersion = "11.0.3"
 // https://modrinth.com/mod/suggestion-tweaker/versions?l=fabric
@@ -21,12 +23,12 @@ val clothConfigVersion = "15.0.140+fabric"
 
 // buildscript
 plugins {
-	id("fabric-loom") version "1.9.+"
+	id("fabric-loom") version "1.10.+"
 	id("maven-publish")
 }
 
-base.archivesName = "modid"
-group = "io.github.tropheusj"
+base.archivesName = "ponderminimalreproduction"
+group = "gay.asoji"
 
 val buildNum = providers.environmentVariable("GITHUB_RUN_NUMBER")
     .filter(String::isNotEmpty)
@@ -39,6 +41,8 @@ version = "0.1.0+$buildNum-mc$minecraftVersion"
 repositories {
 	maven("https://maven.parchmentmc.org")
 	maven("https://api.modrinth.com/maven")
+    maven("https://maven.createmod.net/")
+    maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/")
 }
 
 dependencies {
@@ -52,6 +56,10 @@ dependencies {
 
 	// dependencies
 	modImplementation("net.fabricmc.fabric-api:fabric-api:$fapiVersion")
+    modImplementation(files("libs/Ponder-Fabric-1.21.1-1.0.0.jar")) // working based off of this commit https://github.com/maximumpower55/Ponder/tree/a54389756297ddf8232c95332a1c01814c4ff087
+    modImplementation("fuzs.forgeconfigapiport:forgeconfigapiport-fabric:$fcapiVersion")
+    modImplementation("dev.engine-room.flywheel:flywheel-fabric-api-1.21.1:$flywheelVersion")
+    modImplementation("dev.engine-room.flywheel:flywheel-fabric-1.21.1:$flywheelVersion")
 
 	// dev env
     modLocalRuntime("maven.modrinth:sodium:$sodiumVersion")

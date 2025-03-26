@@ -1,25 +1,28 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "ponderminimalreproduction",
   "version": "${version}",
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Ponder Minimal Reproduction",
+  "description": "This is a minimal reproduction environment used for reporting Ponder bugs",
   "authors": [
-    "Tropheus Jay"
+    "asoji"
   ],
   "contact": {
-    "sources": "https://github.com/TropheusJ/fabric-example-mod"
+    "sources": "https://github.com/asoji/PonderMinimalReproductionEnvironment"
   },
   "license": "MIT",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/ponderminimalreproduction/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.github.tropheusj.modid.ExampleMod"
+      "gay.asoji.ponderminimalreproduction.PonderMinimalReproduction"
+    ],
+    "client": [
+      "gay.asoji.ponderminimalreproduction.client.PonderMinimalReproductionClient"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "ponderminimalreproduction.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",
